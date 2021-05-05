@@ -1,8 +1,7 @@
 FROM ubuntu:18.04
 
-RUN apt-get update
-
-RUN apt-get install -y python3-pip git wget
+RUN apt-get update && \
+  apt-get install -y python3-pip git wget
   
 RUN apt install -y \
   python3-dev \
@@ -22,17 +21,23 @@ RUN apt install -y \
   libxcb1-dev \
   libpq-dev 
 
-RUN apt-get install -y python3-venv  
-RUN python3 -m venv /root/venv-odoo-14.0 
-RUN . /root/venv-odoo-14.0/bin/activate
+RUN apt-get install -y python3-venv && \
+  python3 -m venv /root/venv-odoo-14.0 && \
+  . /root/venv-odoo-14.0/bin/activate
 
-WORKDIR /root/odoo-dev/odoo
+WORKDIR /root/sourcecode/odoo
+
+COPY requirements.txt .
+
+RUN pip3 install setuptools wheel && \
+  pip3 install -r requirements.txt
 
 COPY . .
 
-RUN pip3 install setuptools wheel && pip3 install -r requirements.txt
+ENV PORT 8069
+EXPOSE $PORT
 
-CMD ["python3","odoo-bin","-c","odoo.conf"]
+CMD [ "python3" , "odoo-bin" , "-c" , "/root/sourcecode/odoo/config/odoo.dev.conf" ]
 
-EXPOSE 8069
+
 
