@@ -41,3 +41,9 @@ volumes:
   ```
   http://localhost:8069/
   ```
+
+## Others
+
+- chrome debug plugin
+
+  [Odoo Debug](https://chrome.google.com/webstore/detail/odoo-debug/hmdmhilocobgohohpdpolmibjklfgkbi)
