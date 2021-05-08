@@ -32,12 +32,15 @@ COPY requirements.txt .
 RUN pip3 install setuptools wheel && \
   pip3 install -r requirements.txt
 
+RUN pip3 install debugpy
+
 COPY . .
 
 ENV PORT 8069
 EXPOSE $PORT
 
-CMD [ "python3" , "odoo-bin" , "-c" , "/root/sourcecode/odoo/config/odoo.dev.conf" ]
+# CMD [ "python3" , "odoo-bin" , "-c" , "/root/sourcecode/odoo/config/odoo.dev.conf" ]
+CMD [ "python3" , "-m" , "debugpy" , "--listen" , "5678" , "odoo-bin" , "-c" , "/root/sourcecode/odoo/config/odoo.dev.conf" ]
 
 
 
