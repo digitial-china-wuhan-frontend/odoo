@@ -47,3 +47,10 @@ volumes:
 - chrome debug plugin
 
   [Odoo Debug](https://chrome.google.com/webstore/detail/odoo-debug/hmdmhilocobgohohpdpolmibjklfgkbi)
+
+## Todos
+
+- debug
+  - how to debug odoo app in vscode
+- auto build
+  - docker hub connected to github
