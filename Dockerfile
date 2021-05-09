@@ -29,10 +29,9 @@ WORKDIR /root/sourcecode/odoo
 
 COPY requirements.txt .
 
-RUN pip3 install setuptools wheel && \
-  pip3 install -r requirements.txt
+RUN pip3 install setuptools wheel debugpy
 
-RUN pip3 install debugpy
+RUN pip3 install -r requirements.txt
 
 COPY . .
 
